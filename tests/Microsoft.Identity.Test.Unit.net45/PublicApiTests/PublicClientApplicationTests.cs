@@ -662,9 +662,9 @@ namespace Microsoft.Identity.Test.Unit.PublicApiTests
                                                                             .BuildConcrete();
 
                 // Interactive call and user cancels authentication
-                MockWebUI ui = new MockWebUI()
+                var ui = new MockWebUI()
                 {
-                    MockResult = new AuthorizationResult(AuthorizationStatus.UserCancel)
+                    MockResult = AuthorizationResult.FromStatus(AuthorizationStatus.UserCancel)
                 };
 
                 httpManager.AddMockHandlerForTenantEndpointDiscovery(MsalTestConstants.AuthorityCommonTenant);

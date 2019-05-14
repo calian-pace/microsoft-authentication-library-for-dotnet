@@ -39,12 +39,11 @@ namespace Microsoft.Identity.Client.Platforms.netcore.OsBrowser
         private readonly IPlatformProxy _platformProxy;
 
         public DefaultOsBrowserWebUi(
-            ICoreLogger logger,
-            IPlatformProxy platformProxy,
+            RequestContext requestContext,
             /* for test */ ITcpInterceptor tcpInterceptor = null)
         {
-            _logger = logger;
-            _platformProxy = platformProxy;
+            _logger = requestContext.Logger;
+            _platformProxy = requestContext.ServiceBundle.PlatformProxy;
             _tcpInterceptor = tcpInterceptor ?? new TcpInterceptor(_logger);
         }
 
@@ -92,7 +91,6 @@ namespace Microsoft.Identity.Client.Platforms.netcore.OsBrowser
                     "Please configure a redirect uri with a valid, non-default, port number, i.e. > 0, not 80");
             }
         }
-
 
         private async Task<Uri> InterceptAuthorizationUriAsync(
             Uri authorizationUri,

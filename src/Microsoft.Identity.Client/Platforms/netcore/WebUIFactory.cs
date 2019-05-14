@@ -13,7 +13,7 @@ namespace Microsoft.Identity.Client.Platforms.netcore
     {
         public IWebUI CreateAuthenticationDialog(CoreUIParent parent, RequestContext requestContext, IPlatformProxy platformProxy)
         {
-            return new DefaultOsBrowserWebUi(requestContext.Logger, platformProxy);
+            return new DefaultOsBrowserWebUi(requestContext);
         }
     }
 }
